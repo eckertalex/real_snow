@@ -49,7 +49,10 @@
 			{
 				// sample the texture
 				fixed4 col = tex2D(_MainTex, i.uv);
+
+				// this will determine where it replenishes snow, will be either 1, 0
 				float randVal = ceil(rand(float3(i.uv.x, i.uv.y, 0)*_Time.x) - (1 - _flakeAmount));
+				// saturate makes sure it is a value between 0 and 1
 				return saturate(col - (randVal * _flakeOpacity));
 			}
 			ENDCG
